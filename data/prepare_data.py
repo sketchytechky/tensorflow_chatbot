@@ -1,3 +1,4 @@
+import six
 import random
 
 #create files for AI
@@ -87,7 +88,7 @@ def prepare_seq2seq_files(questions, answers, path='',TESTSET_SIZE = 30000):
             train_enc.write(questions[i]+'\n')
             train_dec.write(answers[i]+ '\n' )
         if i%10000 == 0:
-            print '\n>> written %d lines' %(i)
+            print('\n>> written {} lines'.format(i))
 
     # close files
     train_enc.close()
@@ -101,11 +102,11 @@ def prepare_seq2seq_files(questions, answers, path='',TESTSET_SIZE = 30000):
 ####
 
 id2line = get_id2line()
-print '>> gathered id2line dictionary.\n'
+print('>> gathered id2line dictionary.\n')
 convs = get_conversations()
-print '>> gathered conversations.\n'
+print('>> gathered conversations.\n')
 questions, answers = gather_dataset(convs,id2line)
-print questions[:2]
-#print '>> gathered questions and answers.\n'
+print(questions[:2])
+#print('>> gathered questions and answers.\n')
 
 prepare_seq2seq_files(questions,answers)
